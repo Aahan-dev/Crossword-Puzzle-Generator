@@ -40,4 +40,32 @@ class CrosswordPuzzle:
         return False  # Failed to place the word after many attempts
 
 
+    def can_place_word(self, word, row, col, direction):
+        """
+        Check if a word can be placed in the grid at the specified position.
+
+
+        Args:
+            word (str): The word to check.
+            row (int): The starting row for placement.
+            col (int): The starting column for placement.
+            direction (str): The direction to place the word ('horizontal' or 'vertical').
+
+
+        Returns:
+            bool: True if the word can be placed, False otherwise.
+        """
+        word_length = len(word)
+
+
+        for i in range(word_length):
+            if direction == 'horizontal':
+                if self.grid[row][col + i] not in [' ', word[i]]:
+                    return False
+            else:
+                if self.grid[row + i][col] not in [' ', word[i]]:
+                    return False
+        return True
+
+
     
