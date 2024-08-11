@@ -68,4 +68,63 @@ class CrosswordPuzzle:
         return True
 
 
-    
+    def fill_grid(self):
+        """Fill the empty spaces in the grid with random letters."""
+        for row in range(self.size):
+            for col in range(self.size):
+                if self.grid[row][col] == ' ':
+                    self.grid[row][col] = random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+
+
+
+
+    def display(self):
+        """Display the crossword puzzle grid."""
+        for row in self.grid:
+            print(' '.join(row))
+
+
+
+
+    def generate(self, words):
+        """
+        Generate the crossword puzzle with the given list of words.
+
+
+
+
+        Args:
+            words (list): A list of words to include in the crossword.
+        """
+        for word in words:
+            success = self.add_word(word)
+            if not success:
+                print(f"Failed to place word: {word}")
+
+
+
+
+        self.fill_grid()  # Fill remaining spaces with random letters
+
+
+
+
+def main():
+    """Main function to run the crossword puzzle generator."""
+    size = int(input("Enter the size of the crossword (e.g., 10): "))  # Size of the grid
+    words = input("Enter words separated by commas: ").upper().split(',')  # User input for words
+
+
+
+
+    crossword = CrosswordPuzzle(size)  # Create a crossword puzzle instance
+    crossword.generate(words)  # Generate the puzzle
+    crossword.display()  # Display the generated puzzle
+
+
+
+
+if __name__ == "__main__":
+    main()  # Run the main function
+
+
